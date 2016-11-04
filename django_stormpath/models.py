@@ -423,6 +423,9 @@ class StormpathUser(StormpathBaseUser):
 
 @receiver(pre_save, sender=Group)
 def save_group_to_stormpath(sender, instance, **kwargs):
+    if kwargs.get('raw', False):
+        return False
+    
     try:
         if instance.pk is None:
             # creating a new group
