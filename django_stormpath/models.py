@@ -189,6 +189,7 @@ class StormpathBaseUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         abstract = True
 
+    id = models.UUIDField(verbose_name=_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     href = models.CharField(max_length=255, null=True, blank=True)
     username = models.CharField(max_length=255, unique=True)
     given_name = models.CharField(max_length=255)
@@ -425,7 +426,7 @@ class StormpathUser(StormpathBaseUser):
 def save_group_to_stormpath(sender, instance, **kwargs):
     if kwargs.get('raw', False):
         return False
-    
+
     try:
         if instance.pk is None:
             # creating a new group
