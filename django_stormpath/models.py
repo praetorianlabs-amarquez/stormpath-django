@@ -7,6 +7,8 @@ application that modifies user data on Stormpath. If needing to add more
 fields please extend the StormpathUser class from this module.
 """
 
+import uuid
+
 from django.conf import settings
 from django.db import models, IntegrityError, transaction
 from django.contrib.auth.models import (BaseUserManager,
