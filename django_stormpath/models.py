@@ -189,7 +189,6 @@ class StormpathBaseUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         abstract = True
 
-    id = models.UUIDField(verbose_name="ID", primary_key=True, editable=False)
     href = models.CharField(max_length=255, null=True, blank=True)
     username = models.CharField(max_length=255, unique=True)
     given_name = models.CharField(max_length=255)
