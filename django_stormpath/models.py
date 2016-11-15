@@ -421,7 +421,7 @@ class StormpathUser(StormpathBaseUser):
     pass
 
 
-@receiver(pre_save, sender=Group, dispatch_uid='django_stormpath.models.save_group_to_stormpath')
+@receiver(pre_save, sender=Group)
 def save_group_to_stormpath(sender, instance, **kwargs):
     if kwargs.get('raw', False):
         return False
@@ -451,7 +451,7 @@ def save_group_to_stormpath(sender, instance, **kwargs):
         raise IntegrityError(e)
 
 
-@receiver(pre_delete, sender=Group, dispatch_uid='django_stormpath.models.delete_group_from_stormpath')
+@receiver(pre_delete, sender=Group)
 def delete_group_from_stormpath(sender, instance, **kwargs):
     try:
         APPLICATION.groups.search({'name': instance.name})[0].delete()
